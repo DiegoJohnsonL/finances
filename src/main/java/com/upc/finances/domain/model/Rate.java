@@ -1,5 +1,6 @@
 package com.upc.finances.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 public class Rate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
     private int daysPerYear;
     @Embedded
@@ -19,6 +21,7 @@ public class Rate {
     @Column(name = "discount_date", columnDefinition = "DATE")
     private LocalDate discountDate;
     private Double rate;
+    @JsonIgnore
     @OneToOne(mappedBy = "rate")
     private Invoice invoice;
 }

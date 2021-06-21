@@ -1,12 +1,19 @@
 package com.upc.finances.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-
+import java.io.Serializable;
 @Entity
-@Table(name = "costs")
+@Table(name = "invoice_costs")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cost {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,8 +22,7 @@ public class Cost {
     private String motive;
     @Embedded
     private ExpressedValue expressedValue;
-    @ManyToOne
-    @JoinColumn(name = "invoice_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     private Invoice invoice;
-
 }
