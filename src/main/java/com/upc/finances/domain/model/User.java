@@ -26,6 +26,6 @@ public class User {
     private String email;
     private String password;
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private List<Invoice> invoices = new ArrayList<Invoice>();
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    private List<Invoice> invoices;
 }

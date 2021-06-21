@@ -1,16 +1,25 @@
 package com.upc.finances.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Entity
 @Table(name = "invoices")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,16 +28,19 @@ public class Invoice {
     private LocalDate paymentDate;
     private BigDecimal totalCharged;
     private BigDecimal retention;
-    @OneToMany(mappedBy = "invoice")
-    @MapKey(name = "costType")
-    private Map<CostType,Cost> costs = new HashMap<CostType, Cost>();
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "rate_id", referencedColumnName = "id")
     private Rate rate;
-    // private Rate rate;
-    // private User user;
+    @OneToMany(
+            mappedBy = "invoice",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
+    )
+    private List<Cost> costs;
+
 }
