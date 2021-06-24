@@ -11,6 +11,7 @@ import java.util.List;
 public class SaveInvoiceWithEffectiveRateResource {
     private LocalDate issueDate;
     private LocalDate paymentDate;
+    private String currency;
     private BigDecimal totalCharged;
     private BigDecimal retention;
     private Rate rate;
