@@ -16,10 +16,10 @@ public class SaveInvoiceWithNominalRateResource {
     private BigDecimal totalCharged;
     private BigDecimal retention;
     private int daysPerYear;
-    private Period rateTerm;
+    private int ratePeriod;
     private LocalDate discountDate;
     private Double rate;
-    private Period capitalizationPeriod;
+    private int capitalizationPeriod;
     private Result result;
     private List<SaveCostResource> initialCosts;
     private List<SaveCostResource> finalCosts;

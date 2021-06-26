@@ -47,5 +47,4 @@ public class Invoice {
             fetch = FetchType.EAGER
     )
     private List<Cost> costs;
-
 }

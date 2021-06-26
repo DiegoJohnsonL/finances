@@ -18,7 +18,7 @@ public class SaveInvoiceWithEffectiveRateResource {
     private BigDecimal totalCharged;
     private BigDecimal retention;
     private int daysPerYear;
-    private Period rateTerm;
+    private int ratePeriod;
     private LocalDate discountDate;
     private Double rate;
     private Result result;

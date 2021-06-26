@@ -16,11 +16,11 @@ public class Rate {
     @JsonIgnore
     private Long id;
     private int daysPerYear;
-    @Embedded
-    private Period rateTerm;
+    private int ratePeriod;
     @Column(name = "discount_date", columnDefinition = "DATE")
     private LocalDate discountDate;
     private Double rate;
+    private int capitalizationPeriod;
     @JsonIgnore
     @OneToOne(mappedBy = "rate")
     private Invoice invoice;

@@ -45,7 +45,7 @@ public class UserInvoicesController {
     private Invoice convertToEntity(SaveInvoiceWithEffectiveRateResource resource) {
         Rate rate = new Rate();
         rate.setDaysPerYear(resource.getDaysPerYear());
-        rate.setRateTerm(resource.getRateTerm());
+        rate.setRatePeriod(resource.getRatePeriod());
         rate.setDiscountDate(resource.getDiscountDate());
         rate.setRate(resource.getRate());
         return Invoice.builder()
@@ -71,9 +71,9 @@ public class UserInvoicesController {
     }
 
     private Invoice convertToEntity(SaveInvoiceWithNominalRateResource resource) {
-        NominalRate rate = new NominalRate();
+        Rate rate = new Rate();
         rate.setDaysPerYear(resource.getDaysPerYear());
-        rate.setRateTerm(resource.getRateTerm());
+        rate.setRatePeriod(resource.getRatePeriod());
         rate.setDiscountDate(resource.getDiscountDate());
         rate.setRate(resource.getRate());
         rate.setCapitalizationPeriod(resource.getCapitalizationPeriod());
@@ -109,7 +109,11 @@ public class UserInvoicesController {
                 .currency(entity.getCurrency())
                 .totalCharged(entity.getTotalCharged())
                 .retention(entity.getRetention())
-                .rate(entity.getRate())
+                .daysPerYear(entity.getRate().getDaysPerYear())
+                .ratePeriod(entity.getRate().getRatePeriod())
+                .discountDate(entity.getRate().getDiscountDate())
+                .rate(entity.getRate().getRate())
+                .capitalizationPeriod(entity.getRate().getCapitalizationPeriod())
                 .result(entity.getResult())
                 .initialCosts(entity.getCosts().stream().filter(invoice -> invoice.getCostType() == CostType.INITIAL).collect(Collectors.toList()))
                 .finalCosts(entity.getCosts().stream().filter(invoice -> invoice.getCostType() == CostType.FINAL).collect(Collectors.toList()))
