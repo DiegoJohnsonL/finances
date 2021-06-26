@@ -88,11 +88,15 @@ public class UserInvoicesController {
                 .rate(rate)
                 .result(resource.getResult())
                 .costs(Stream.concat(resource.getInitialCosts().stream().map(saveCostResource -> {
-                    Cost cost = mapper.map(saveCostResource, Cost.class);
+                    Cost cost = new Cost();
+                    cost.setMotive(saveCostResource.getMotive());
+                    cost.setExpressedValue(saveCostResource.getExpressedValue());
                     cost.setCostType(CostType.INITIAL);
                     return cost;
                 }), resource.getFinalCosts().stream().map(saveCostResource -> {
-                    Cost cost = mapper.map(saveCostResource, Cost.class);
+                    Cost cost = new Cost();
+                    cost.setMotive(saveCostResource.getMotive());
+                    cost.setExpressedValue(saveCostResource.getExpressedValue());
                     cost.setCostType(CostType.FINAL);
                     return cost;
                 })).collect(Collectors.toList()))
