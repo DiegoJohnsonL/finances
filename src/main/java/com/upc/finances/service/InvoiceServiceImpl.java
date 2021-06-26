@@ -4,9 +4,11 @@ import com.upc.finances.domain.repository.CostRepository;
 import com.upc.finances.domain.repository.InvoiceRepository;
 import com.upc.finances.domain.repository.UserRepository;
 import com.upc.finances.domain.service.InvoiceService;
+import com.upc.finances.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.webjars.NotFoundException;
@@ -51,5 +53,13 @@ public class InvoiceServiceImpl implements InvoiceService {
         costRepository.saveAll(costs);
         invoice.setCosts(costs);
         return invoice;
+    }
+
+    @Override
+    public ResponseEntity<?> deleteInvoice(Long userId, Long invoiceId) {
+        return invoiceRepository.findByUserIdAndId(userId, invoiceId).map(invoice -> {
+            invoiceRepository.delete(invoice);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(() -> new ResourceNotFoundException("Invoice not found with Id " + invoiceId + " and PostId " + userId));
     }
 }
