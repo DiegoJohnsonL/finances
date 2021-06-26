@@ -24,6 +24,8 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String title;
+    private String operationType;
     private LocalDate issueDate;
     private LocalDate paymentDate;
     private String currency;
@@ -36,6 +38,8 @@ public class Invoice {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "rate_id", referencedColumnName = "id")
     private Rate rate;
+    @Embedded
+    private Result result;
     @OneToMany(
             mappedBy = "invoice",
             cascade = CascadeType.ALL,
