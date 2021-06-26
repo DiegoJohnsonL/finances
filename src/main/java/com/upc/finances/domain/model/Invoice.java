@@ -26,6 +26,7 @@ public class Invoice {
     private Long id;
     private LocalDate issueDate;
     private LocalDate paymentDate;
+    private String currency;
     private BigDecimal totalCharged;
     private BigDecimal retention;
     @ManyToOne

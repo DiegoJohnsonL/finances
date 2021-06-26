@@ -1,6 +1,5 @@
 package com.upc.finances.resource;
 
-import com.upc.finances.domain.model.CostType;
 import com.upc.finances.domain.model.ExpressedValue;
 import lombok.Data;
 

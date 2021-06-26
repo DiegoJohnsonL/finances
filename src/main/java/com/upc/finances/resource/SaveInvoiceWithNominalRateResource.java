@@ -13,6 +13,7 @@ import java.util.Map;
 public class SaveInvoiceWithNominalRateResource {
     private LocalDate issueDate;
     private LocalDate paymentDate;
+    private String currency;
     private BigDecimal totalCharged;
     private BigDecimal retention;
     private NominalRate nominalRate;
