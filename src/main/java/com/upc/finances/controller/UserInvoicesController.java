@@ -48,13 +48,14 @@ public class UserInvoicesController {
         rate.setRatePeriod(resource.getRatePeriod());
         rate.setDiscountDate(resource.getDiscountDate());
         rate.setRate(resource.getRate());
+        rate.setRateType("effective");
         return Invoice.builder()
                 .title(resource.getTitle())
                 .operationType(resource.getOperationType())
                 .issueDate(resource.getIssueDate())
                 .paymentDate(resource.getPaymentDate())
                 .currency(resource.getCurrency())
-                .totalCharged(resource.getTotalCharged())
+                .nominalValue(resource.getTotalCharged())
                 .retention(resource.getRetention())
                 .rate(rate)
                 .result(resource.getResult())
@@ -77,13 +78,14 @@ public class UserInvoicesController {
         rate.setDiscountDate(resource.getDiscountDate());
         rate.setRate(resource.getRate());
         rate.setCapitalizationPeriod(resource.getCapitalizationPeriod());
+        rate.setRateType("nominal");
         return Invoice.builder()
                 .title(resource.getTitle())
                 .operationType(resource.getOperationType())
                 .issueDate(resource.getIssueDate())
                 .paymentDate(resource.getPaymentDate())
                 .currency(resource.getCurrency())
-                .totalCharged(resource.getTotalCharged())
+                .nominalValue(resource.getTotalCharged())
                 .retention(resource.getRetention())
                 .rate(rate)
                 .result(resource.getResult())
@@ -111,7 +113,7 @@ public class UserInvoicesController {
                 .issueDate(entity.getIssueDate())
                 .paymentDate(entity.getPaymentDate())
                 .currency(entity.getCurrency())
-                .totalCharged(entity.getTotalCharged())
+                .totalCharged(entity.getNominalValue())
                 .retention(entity.getRetention())
                 .daysPerYear(entity.getRate().getDaysPerYear())
                 .ratePeriod(entity.getRate().getRatePeriod())

@@ -9,12 +9,13 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "rates")
 @Data
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Rate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long id;
+    @JsonIgnore
+    private String rateType;
     private int daysPerYear;
     private int ratePeriod;
     @Column(name = "discount_date", columnDefinition = "DATE")

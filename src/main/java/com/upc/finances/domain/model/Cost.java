@@ -10,7 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity
-@Table(name = "invoice_costs")
+@Table(name = "costs")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

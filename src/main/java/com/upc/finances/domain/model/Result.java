@@ -16,7 +16,7 @@ public class Result {
     private short daysPassed;
     private Double effectiveRate;
     private Double discountedRate;
-    private BigDecimal discountPerDay;
+    private BigDecimal discount;
     private BigDecimal totalInitialCosts;
     private BigDecimal netValue;
     private BigDecimal totalValueToReceive;

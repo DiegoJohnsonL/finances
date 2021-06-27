@@ -29,7 +29,7 @@ public class Invoice {
     private LocalDate issueDate;
     private LocalDate paymentDate;
     private String currency;
-    private BigDecimal totalCharged;
+    private BigDecimal nominalValue;
     private BigDecimal retention;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
