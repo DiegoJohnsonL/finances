@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class OpenApiConfiguration {
-    @Bean(name = "HelpIOpenApi")
+    @Bean(name = "FinanzeitorOpenApi")
     public OpenAPI bloggingOpenApi() {
         return new OpenAPI()
                 .components(new Components())
